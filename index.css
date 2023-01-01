@@ -228,38 +228,6 @@ span.psw {
 
 
 /* home page divs */
-.yellowh1 {
-    flex: 1;
-    color: #226699;
-    text-align: center;
-    padding: 5px;
-    text-decoration: none;
-    font-size: 25px;
-    line-height: 20px;
-    border-radius: 4px;
-    float: left;
-}
-
-.yellowp {
-    color: #226699;
-    text-align: left;
-    padding: 5px;
-    text-decoration: none;
-    font-size: 16px;
-    line-height: 20px;
-    border-radius: 4px;
-}
-
-.blueh1 {
-    color: #ddd;
-    text-align: center;
-    padding: 5px;
-    text-decoration: none;
-    font-size: 25px;
-    line-height: 20px;
-    border-radius: 4px;
-}
-
 .flex-parent-element {
     display: flex;
     width: 100%;
@@ -280,4 +248,44 @@ span.psw {
     padding: 10px;
     border-radius: 25px;
     width: 60%;
+}
+
+.flex-child-element:first-child h1 {
+    color: #226699;
+    text-align: center;
+    padding: 5px;
+    text-decoration: none;
+    font-size: 25px;
+    line-height: 20px;
+    border-radius: 4px;
+}
+
+.flex-child-element:first-child p {
+    color: #226699;
+    text-align: left;
+    padding: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 20px;
+    border-radius: 4px;
+}
+
+.flex-child-element h2 {
+    color: #ddd;
+    text-align: center;
+    padding: 5px;
+    text-decoration: none;
+    font-size: 25px;
+    line-height: 20px;
+    border-radius: 4px;
+}
+
+.flex-child-element li {
+    color: #ddd;
+    text-align: left;
+    padding: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 20px;
+    border-radius: 4px;
 }
