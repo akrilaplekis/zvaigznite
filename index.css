@@ -228,22 +228,7 @@ span.psw {
 
 
 /* home page divs */
-
-.float-container {
-    padding: 20px;
-}
-
-.float-child-homeDiv {
-    float: left;
-    margin-top: 5%;
-    margin-left: 5%;
-    width: 60%;
-    background-color: #ffc334;
-    padding: 10px;
-    border-radius: 25px;
-}
-
-.float-child-homeDiv h1 {
+.yellowh1 {
     flex: 1;
     color: #226699;
     text-align: center;
@@ -255,7 +240,7 @@ span.psw {
     float: left;
 }
 
-.float-child-homeDiv p {
+.yellowp {
     color: #226699;
     text-align: left;
     padding: 5px;
@@ -265,17 +250,7 @@ span.psw {
     border-radius: 4px;
 }
 
-.float-child-homeDiv2 {
-    float: left;
-    margin-top: 5%;
-    margin-left: 75%;
-    width: 25%;
-    background-color: #226699;
-    padding: 10px;
-    border-radius: 25px;
-}
-
-.float-child-homeDiv2 h1 {
+.blueh1 {
     color: #ddd;
     text-align: center;
     padding: 5px;
@@ -283,4 +258,26 @@ span.psw {
     font-size: 25px;
     line-height: 20px;
     border-radius: 4px;
+}
+
+.flex-parent-element {
+    display: flex;
+    width: 100%;
+}
+
+.flex-child-element {
+    margin: 5%;
+    background-color: #226699;
+    padding: 10px;
+    border-radius: 25px;
+    width: 25%;
+}
+
+.flex-child-element:first-child {
+    flex: 1;
+    margin: 5%;
+    background-color: #ffc334;
+    padding: 10px;
+    border-radius: 25px;
+    width: 60%;
 }
