@@ -16,9 +16,9 @@
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
-                    <a href="#">Zvaniņi</a>
-                    <a href="#">Bitītes</a>
-                    <a href="#">Kumelītes</a>
+                    <a href="grupas.php?id=1">Zvaniņi</a>
+                    <a href="grupas.php?id=2">Bitītes</a>
+                    <a href="grupas.php?id=3">Kumelītes</a>
                 </div>
             </div>
             <a>Jaunumi</a>
