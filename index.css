@@ -24,17 +24,13 @@ body {
     font-size: 18px; 
     line-height: 25px;
     border-radius: 4px;
+    cursor: pointer;
 
 }
 
 .header a.logo {
     font-size: 25px;
     font-weight: bold;
-}
-
-.header a.active {
-    background-color: dodgerblue;
-    color: white;
 }
 
 .header-right {
@@ -52,16 +48,9 @@ body {
     border: none;
     outline: none;
     color: #226699;
+    background-color: #ffc334;
     padding: 14px 16px;
-    background-color: inherit;
-    font-family: inherit;
     margin: 0;
-
-    float: left;
-    text-align: center;
-    text-decoration: none;
-    line-height: 25px;
-    border-radius: 4px;
 }
 
 .header a:hover, .dropdown:hover .dropbtn {
@@ -74,7 +63,7 @@ body {
     position: absolute;
     background-color: #ffdb57;
     min-width: 160px;
-    z-index: 2;
+    z-index: 1;
 }
 
 .dropdown-content a {
@@ -84,6 +73,7 @@ body {
     text-decoration: none;
     display: block;
     text-align: left;
+
 }
 
 .dropdown-content a:hover {
