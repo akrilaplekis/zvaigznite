@@ -1,16 +1,11 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
     <meta charset="UTF-8">
     <title>Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="style.css" rel="stylesheet" type="text/css">
     <link href="index.css" rel="stylesheet" type="text/css">
+    <link href="login.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <div class="header">
@@ -35,22 +30,20 @@ and open the template in the editor.
     </div>
 
     <div class="container">
-      <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
+        <div>
+            <label for="uname"><b>Lietotāja vārds</b></label>
+        </div><div>
+            <input type="text" placeholder="Ievadiet lietotāja vārdu" name="uname" required>
+        </div>
+        <div>
+            <label for="psw"><b>Parole</b></label>
+        </div><div>
+            <input type="password" placeholder="Ievadiet paroli" name="psw" required>
+        </div>
 
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
-
-      <button type="submit">Login</button>
-      <label>
-        <input type="checkbox" checked="checked" name="remember"> Remember me
-      </label>
+      <button type="submit">Pierakstīties</button>
     </div>
 
-    <div class="container" style="background-color:#f1f1f1">
-      <button type="button" class="cancelbtn">Cancel</button>
-      <span class="psw">Forgot <a href="#">password?</a></span>
-    </div>
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // collect value of input field

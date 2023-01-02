@@ -1,0 +1,41 @@
+.kontDiv {
+    margin-top: 5%;
+    margin-left: 20%;
+    width: 60%;
+    background-color: #ffc334;
+    padding: 10px;
+    border-radius: 25px;
+}
+
+.kontList {
+    color: #226699;
+    padding: 5px;
+    font-size: 18px;
+    line-height: 20px;
+    border-radius: 4px;
+    margin: 5px;
+}
+
+.dt {
+    margin: 5px;
+}
+
+.h1 {
+    color: #226699;
+    text-align: center;
+    padding: 5px;
+    text-decoration: none;
+    font-size: 25px;
+    line-height: 20px;
+    border-radius: 4px;
+}
+
+.h2 {
+    color: #226699;
+    text-align: center;
+    padding: 5px;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 20px;
+    border-radius: 4px;
+}
