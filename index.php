@@ -5,30 +5,30 @@
     <title>Zvaigznīte</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="index.css" rel="stylesheet" type="text/css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <div class="header">
-        <a href="index.php" class="logo">Zvaigznīte</a>
-        <div class="header-right">
-            <div class="dropdown">
-                <button class="dropbtn">Grupas
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown-content">
-                    <a href="grupas.php?id=1">Zvaniņi</a>
-                    <a href="grupas.php?id=2">Bitītes</a>
-                    <a href="grupas.php?id=3">Kumelītes</a>
-                </div>
+    <nav class="navbar navbar-custom navbar-fixed-to">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.php">Zvaigznīte</a>
             </div>
-            <a>Jaunumi</a>
-            <a href="foto.php">Foto Galerija</a>
-            <a>Kalendārs</a>
-            <a href="kontakti.html">Kontakti</a>
-            <a href="log_in.php">Pieslēgties</a>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Grupas<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="grupas.php?id=1">Zvaniņi</a></li>
+                        <li><a href="grupas.php?id=2">Bitītes</a></li>
+                        <li><a href="grupas.php?id=3">Kumelītes</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Foto Galerija</a></li>
+                <li><a href="kontakti.html">Kontakti</a></li>
+                <li><a href="log_in.php">Pieslēgties</a></li>
+            </ul>
         </div>
-    </div>
+    </nav>
 
     <div class="flex-parent-element">
         <div class="flex-child-element">
