@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html>
 <?php
-    $servername = "localhost";
+    /*$servername = "localhost";
     $username = "root";
     $password = "";
     $db = "majasdarbs";
 
     // Create connection
-    $conn = new mysqli($servername, $username, $password, $db);
-
+    $conn = new mysqli($servername, $username, $password, $db);*/
+    require_once "config.php";
     // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+    if ($link->connect_error) {
+        die("Connection failed: " . $link->connect_error);
     }
 
     $id = $_GET['id'];
 
     $sql = "SELECT nosaukums, p_vards_1, p_uzvards_1, p_vards_2, p_uzvards_2, a_vards, a_uzvards FROM grupas WHERE grupa_id = $id";
-    $result = $conn->query($sql);
+    $result = $link->query($sql);
     $row = $result->fetch_assoc();
     $nos = $row["nosaukums"];
     $pv1 = $row["p_vards_1"];
@@ -27,7 +27,7 @@
     $av = $row["a_vards"];
     $au = $row["a_uzvards"];
 
-    $conn->close();
+    $link->close();
 ?>
 <head>
     <meta charset="UTF-8">
@@ -73,9 +73,10 @@
             </div>
             <div class="col-md-2">
                 <ul>
-                    <li>Lorem ipsum dolor sit </li>
-                    <li>In consequat, diam sed sodales tristique</li>
-                    <li>Etiam elementum vitae nisl a vesti</li>
+                    <h1 class="title3">Pedagogi</h1>
+                    <li class="list1"><?php echo $pv1.' '.$pu1?></li>
+                    <li class="list1"><?php echo $pv2.' '.$pu2?></li>
+                    <li class="list1"><?php echo $av.' '.$au?></li>
                 </ul>
             </div>
             <div class="col-md-3">
