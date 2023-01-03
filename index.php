@@ -5,58 +5,68 @@
     <title>Zvaigznīte</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="index.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
-<body>
-    <div class="header">
-        <a href="index.php" class="logo">Zvaigznīte</a>
-        <div class="header-right">
-            <div class="dropdown">
-                <button class="dropbtn">Grupas
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown-content">
-                    <a href="grupas.php?id=1">Zvaniņi</a>
-                    <a href="grupas.php?id=2">Bitītes</a>
-                    <a href="grupas.php?id=3">Kumelītes</a>
-                </div>
+<body style="background-color: #ffdb57;">
+    <nav class="navbar navbar-custom navbar-fixed-to">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.php">Zvaigznīte</a>
             </div>
-            <a>Jaunumi</a>
-            <a href="foto.php">Foto Galerija</a>
-            <a>Kalendārs</a>
-            <a href="kontakti.html">Kontakti</a>
-            <a href="log_in.php">Pieslēgties</a>
-        </div>
-    </div>
-
-    <div class="flex-parent-element">
-        <div class="flex-child-element">
-            <h1>Par mums</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec laoreet iaculis rutrum. Etiam elementum vitae nisl a vestibulum. Nulla egestas est arcu, nec sodales odio semper vitae. Maecenas ultrices rhoncus nibh eu molestie. Sed dictum sapien a arcu porttitor, ut ornare neque tristique. Ut mattis dolor at lacus efficitur vestibulum. Sed sagittis sollicitudin nisl, nec pellentesque turpis ullamcorper luctus. Integer sem tellus, scelerisque et facilisis lacinia, volutpat quis urna. Nulla sed lacus pulvinar, porta ex at, porta nunc. Cras sodales gravida congue. In hac habitasse platea dictumst. Proin leo mauris, sodales in sodales eget, rhoncus ut augue. Cras maximus nibh vel enim scelerisque, nec hendrerit risus facilisis. Nunc at vulputate lorem. Aliquam erat volutpat. Sed pulvinar tempor dolor, sit amet dignissim lacus viverra id. </p>
-            <p>In feugiat metus non cursus gravida. In consequat, diam sed sodales tristique, eros dui gravida est, quis rutrum sem augue sollicitudin felis. Curabitur maximus condimentum iaculis. Nam tristique ligula vitae eleifend sagittis. Duis vitae mattis elit. Suspendisse pharetra posuere turpis eu dignissim. Phasellus vulputate massa vitae urna pharetra placerat. Fusce eget odio id tortor ultricies sagittis ut non ex. Suspendisse nec elementum quam, a varius leo. Ut et ultricies turpis. Sed quis facilisis libero. Vivamus at efficitur magna. Mauris in metus vitae lorem maximus sagittis ut sit amet ipsum. Duis lobortis faucibus orci.</p>
-        </div>
-        <div class="flex-child-element">
-            <h2>Ikdiena</h2>
-            <ul>
-                <li>Lorem ipsum dolor sit </li>
-                <li>In consequat, diam sed sodales tristique</li>
-                <li>Etiam elementum vitae nisl a vesti</li>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Grupas<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="grupas.php?id=1">Bitītes</a></li>
+                        <li><a href="grupas.php?id=2">Pienenes</a></li>
+                        <li><a href="grupas.php?id=3">Kumelītes</a></li>
+                        <li><a href="grupas.php?id=4">Saulespuķes</a></li>
+                        <li><a href="grupas.php?id=5">Zvaniņi</a></li>
+                        <li><a href="grupas.php?id=6">Rudzupuķes</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Foto Galerija</a></li>
+                <li><a href="kontakti.html">Kontakti</a></li>
+                <li><a href="log_in.php">Pieslēgties</a></li>
             </ul>
         </div>
+    </nav>
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-7">
+                <h1 class="title1">Par mums</h1>
+                <p class="para1">Mēs piedāvājam izglītojošu, radošu un dzīvespriecīgu vidi jūsu bērnam. Mūsu izglītojamie profesionālu, pieredzējušu un radošu pedagogu vadībā apgūs pirmskolas izglītības programmu un tiks sagatavoti skolas gaitu uzsākšanai.</p>
+                <h1 class="title1">Uzņemšana</h1>
+                <p class="para1">Pirmsskolas izglītības programmā tiek uzņemti bērni vecumā no 1,6 gadiem.</p>
+                <p class="para1">Pa vecuma grupām:</p>
+                <ul>
+                    <li class="list2">Bitītes - 1,5 līdz 2 gadi</li>
+                    <li class="list2">Pienenes - 3 gadi</li>
+                    <li class="list2">Kumelītes - 4 gadi</li>
+                    <li class="list2">Saulespuķes - 5 gadi</li>
+                    <li class="list2">Zvaniņi - 6 gadi</li>
+                    <li class="list2">Rudzupuķes - 6 gadi</li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h2 class="title2">Ikdiena</h2>
+                <ul>
+                    <li class="list1">7:00 - 8:30 Bērnu ierašanās iestādē</li>
+                    <li class="list1">8:30 - 8:50 Brokastis</li>
+                    <li class="list1">9:00 - 10:30 Nodarbības</li>
+                    <li class="list1">10:30 - 12:00 Aktivitātes svaigā gaisā</li>
+                    <li class="list1">12:00 - 12:20 Pusdienas</li>
+                    <li class="list1">12:30 - 15:00 Atpūta</li>
+                    <li class="list1">15:30 - 15:50 Launags</li>
+                    <li class="list1">16:00 - 17:00 Nodarbības</li>
+                    <li class="list1">17:00 - 19:00 Bērni dodas mājās</li>
+                </ul>
+            </div>
+        </div>
     </div>
 
-<?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  // collect value of input field
-  $name = $_POST['fname'];
-  if (empty($name)) {
-    echo "Name is empty";
-  } else {
-    echo $name;
-  }
-}
-?>
-
 </body>
-
-
 </html>
