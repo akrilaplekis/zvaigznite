@@ -26,7 +26,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body style="background-color: #ffdb57;">
     <nav class="navbar navbar-custom navbar-fixed-to">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -46,6 +46,33 @@
             </ul>
         </div>
     </nav>
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-5">
+                <h1 class="title1"><?php echo $nos?></h1>
+                <p class="para1">info Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec laoreet iaculis rutrum. Etiam elementum vitae nisl a vestibulum. Nulla egestas est arcu, nec sodales odio semper vitae. Maecenas ultrices rhoncus nibh eu molestie. Sed dictum sapien a arcu porttitor, ut ornare neque tristique. Ut mattis dolor at lacus efficitur vestibulum. Sed sagittis sollicitudin nisl, nec pellentesque turpis ullamcorper luctus. Integer sem tellus, scelerisque et facilisis lacinia, volutpat quis urna. Nulla sed lacus pulvinar, porta ex at, porta nunc. Cras sodales gravida congue. In hac habitasse platea dictumst. Proin leo mauris, sodales in sodales eget, rhoncus ut augue. Cras maximus nibh vel enim scelerisque, nec hendrerit risus facilisis. Nunc at vulputate lorem. Aliquam erat volutpat. Sed pulvinar tempor dolor, sit amet dignissim lacus viverra id. </p>
+                <p class="para1">In feugiat metus non cursus gravida. In consequat, diam sed sodales tristique, eros dui gravida est, quis rutrum sem augue sollicitudin felis. Curabitur maximus condimentum iaculis. Nam tristique ligula vitae eleifend sagittis. Duis vitae mattis elit. Suspendisse pharetra posuere turpis eu dignissim. Phasellus vulputate massa vitae urna pharetra placerat. Fusce eget odio id tortor ultricies sagittis ut non ex. Suspendisse nec elementum quam, a varius leo. Ut et ultricies turpis. Sed quis facilisis libero. Vivamus at efficitur magna. Mauris in metus vitae lorem maximus sagittis ut sit amet ipsum. Duis lobortis faucibus orci.</p>
+            </div>
+            <div class="col-md-2">
+                <ul>
+                    <li>Lorem ipsum dolor sit </li>
+                    <li>In consequat, diam sed sodales tristique</li>
+                    <li>Etiam elementum vitae nisl a vesti</li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h2 class="title2">Svarīgi</h2>
+                <ul>
+                    <li class="list1">Lorem ipsum dolor sit </li>
+                    <li class="list1">In consequat, diam sed sodales tristique</li>
+                    <li class="list1">Etiam elementum vitae nisl a vesti</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
 
 <div class="flex-parent-grupas">
     <div class="flex-child-grupas">
