@@ -1,18 +1,7 @@
 <!DOCTYPE html>
 <html>
 <?php
-    /*$servername = "localhost";
-    $username = "root";
-    $password = "";
-    $db = "majasdarbs";
-
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $db);*/
     require_once "config.php";
-    // Check connection
-    if ($link->connect_error) {
-        die("Connection failed: " . $link->connect_error);
-    }
 
     $id = $_GET['id'];
 

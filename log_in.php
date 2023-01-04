@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
     <head>
     <meta charset="UTF-8">
@@ -33,35 +34,5 @@
             </ul>
         </div>
     </nav>
-
-    <div class="container">
-        <div>
-            <label for="uname"><b>Lietotāja vārds</b></label>
-        </div><div>
-            <input type="text" placeholder="Ievadiet lietotāja vārdu" name="uname" required>
-        </div>
-        <div>
-            <label for="psw"><b>Parole</b></label>
-        </div><div>
-            <input type="password" placeholder="Ievadiet paroli" name="psw" required>
-        </div>
-
-      <button type="submit">Pierakstīties</button>
-    </div>
-
-<?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  // collect value of input field
-  $name = $_POST['fname'];
-  if (empty($name)) {
-    echo "Name is empty";
-  } else {
-    echo $name;
-  }
-}
-?>
-
 </body>
-
-
 </html>
