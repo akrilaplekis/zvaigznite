@@ -1,18 +1,7 @@
 <!DOCTYPE html>
 <html>
 <?php
-    /*$servername = "localhost";
-    $username = "root";
-    $password = "";
-    $db = "majasdarbs";
-
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $db);*/
     require_once "config.php";
-    // Check connection
-    if ($link->connect_error) {
-        die("Connection failed: " . $link->connect_error);
-    }
 
     $id = $_GET['id'];
 
@@ -56,7 +45,8 @@
                         <li><a href="grupas.php?id=6">Rudzupuķes</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Foto Galerija</a></li>
+                <li><a href="#">Vecākiem</a></li>
+                <li><a href="foto.php">Foto Galerija</a></li>
                 <li><a href="kontakti.html">Kontakti</a></li>
                 <li><a href="log_in.php">Pieslēgties</a></li>
             </ul>

@@ -1,0 +1,12 @@
+.panel-custom .panel-heading {
+    color: #226699;
+    background: #ffc334;
+}
+
+.panel-custom .panel-collapse .panel-body {
+    background: #ffdb57;
+}
+
+.panel-custom .panel-collapse {
+    background-color: #ffdb57;
+}
