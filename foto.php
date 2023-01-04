@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Zvaigznīte</title>
+    <title>Galerija</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="index.css" rel="stylesheet" type="text/css">
     <link href="foto.css" rel="stylesheet" type="text/css">
@@ -27,7 +27,7 @@
                         <li><a href="grupas.php?id=6">Rudzupuķes</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Vecākiem</a></li>
+                <li><a href="vacakiem.php">Vecākiem</a></li>
                 <li><a href="foto.php">Foto Galerija</a></li>
                 <li><a href="kontakti.html">Kontakti</a></li>
                 <li><a href="log_in.php">Pieslēgties</a></li>
@@ -51,7 +51,7 @@
     <?php } ?>
 
 
-    <div class="container">
+    <div class="container-fluid">
         <div class="panel-group" id="accordion">
             <div class="panel panel-custom">
                 <div class="panel-heading">

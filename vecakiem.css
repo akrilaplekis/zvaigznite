@@ -1,0 +1,30 @@
+.formt {
+    color: #ddd;
+    text-align: left;
+    padding: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 20px;
+    border-radius: 4px;
+}
+
+.btn-custom {
+    color: #226699;
+    background-color: #ffdb57;
+    border-color: #ffc334;
+}
+
+
+div.col-md-6:nth-child(1){
+    margin: 3%;
+    background-color: #ffc334;
+    padding: 5px;
+    border-radius: 25px;
+}
+
+div.col-md-4:nth-child(2){
+    margin: 3%;
+    background-color: #226699;
+    padding: 3%;
+    border-radius: 25px;
+}
