@@ -38,3 +38,16 @@ div.col-md-4:nth-child(2){
     padding: 3%;
     border-radius: 25px;
 }
+
+.panel-custom .panel-heading {
+    color: #226699;
+    background: #ffdb57;
+}
+
+.panel-custom .panel-collapse .panel-body {
+    background: #ffdb57;
+}
+
+.panel-custom .panel-collapse {
+    background-color: #ffdb57;
+}

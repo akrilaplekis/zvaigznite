@@ -129,6 +129,98 @@
                     <li class="list2">Zvaniņi - 6 gadi</li>
                     <li class="list2">Rudzupuķes - 6 gadi</li>
                 </ul>
+
+                <h1 class="title1">Dokumenti</h1>
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-custom">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Iekšējās kartības noteikumi</a>
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse">
+                            <div class="panel-body">kaut kas
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-custom">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Covid-19 informācija</a>
+                            </h4>
+                        </div>
+                        <div id="collapse2" class="panel-collapse collapse">
+                            <div class="panel-body">kaut kas
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-custom">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Gripas epidēmijas noteikumi</a>
+                            </h4>
+                        </div>
+                        <div id="collapse3" class="panel-collapse collapse">
+                            <div class="panel-body">kaut kas
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-custom">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Izglītības programma</a>
+                            </h4>
+                        </div>
+                        <div id="collapse4" class="panel-collapse collapse">
+                            <div class="panel-body">kaut kas
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-custom">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">Licenze</a>
+                            </h4>
+                        </div>
+                        <div id="collapse5" class="panel-collapse collapse">
+                            <div class="panel-body">kaut kas
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-custom">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">Pašvērtējums</a>
+                            </h4>
+                        </div>
+                        <div id="collapse6" class="panel-collapse collapse">
+                            <div class="panel-body">kaut kas
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-custom">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse7">Darba drošības instrukcija</a>
+                            </h4>
+                        </div>
+                        <div id="collapse7" class="panel-collapse collapse">
+                            <div class="panel-body">kaut kas
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-custom">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse8">Uguns drošības instrukcija</a>
+                            </h4>
+                        </div>
+                        <div id="collapse8" class="panel-collapse collapse">
+                            <div class="panel-body">kaut kas
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-md-4">
                 <h2 class="title2">Pieteikt bērnu rindā</h2>
