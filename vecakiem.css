@@ -8,6 +8,16 @@
     border-radius: 4px;
 }
 
+.pazinojums {
+    color: #ffc334;
+    text-align: left;
+    padding: 5px;
+    text-decoration: none;
+    font-size: 12px;
+    line-height: 20px;
+    border-radius: 4px;
+}
+
 .btn-custom {
     color: #226699;
     background-color: #ffdb57;

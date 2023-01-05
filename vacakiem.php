@@ -37,58 +37,79 @@
 
     <?php
     // define variables and set to empty values
-    $v_vards = $v_uzvards = $b_vards = $epasts = $tel = "";
+    $v_vards = $v_uzvards = $b_vards = $epasts = $tel = $komentars = "";
     $errvv = $errbv = $erremail = $errvecums = "";
+    $info = array();
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (empty($_POST["vvards"])) {
             $errvv = "Vecākā vārds ir jāievada!";
+        } else {
+            $info[] = test_input($_POST["vvards"]);
+        }
+
+        if (empty($_POST["vuzv"])) {
+            $info[] = "";
+        } else {
+            $info[] = test_input($_POST["vuzv"]);
         }
 
         if (empty($_POST["bvards"])) {
             $errbv = "Bērna vārds ir jāievada!";
-        }
-
-        if (empty($_POST["email"])) {
-            $erremail = "E-pasts ir jāievada!";
         } else {
-            $email = test_input($_POST["email"]);
-            // check if e-mail address is well-formed
-            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $erremail = "Formāts nav pareizs!";
-            }
-        }
-
-        if (empty($_POST["komentars"])) {
-            $comment = "";
-        } else {
-            $comment = test_input($_POST["komentars"]);
-        }
-
-        if (empty($_POST["vuzv"])) {
-            $uzvards = "";
-        } else {
-            $uzvards = test_input($_POST["vuzv"]);
-        }
-
-        if (empty($_POST["tel"])) {
-            $telefons = "";
-        } else {
-            $telefons = test_input($_POST["tel"]);
+            $info[] = test_input($_POST["bvards"]);
         }
 
         if (empty($_POST["vecums"])) {
             $errvecums = "Jānorāda bērna vecums!";
         } else {
-            $vecums = test_input($_POST["vecums"]);
+            $info[] = test_input($_POST["vecums"]);
+        }
+
+        if (empty($_POST["tel"])) {
+            $info[] = "";
+        } else {
+            $info[] = test_input($_POST["tel"]);
+        }
+
+        if (empty($_POST["email"])) {
+            $erremail = "E-pasts ir jāievada!";
+        } else {
+            // check if e-mail address is well-formed
+            if (filter_var($epasts, FILTER_VALIDATE_EMAIL)) {
+                $erremail = "Formāts nav pareizs!";
+            } else {
+                $info[] = test_input($_POST["email"]);
+            }
+        }
+
+        if (empty($_POST["komentars"])) {
+            $info[] = "";
+        } else {
+            $info[] = test_input($_POST["komentars"]);
+        }
+
+        if($errvv == "" && $errbv == "" && $erremail == "" && $errvecums == ""){
+            save_info($info);
         }
     }
-    $info = array();
+
     function test_input($data) {
         $data = trim($data);
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
-        $info = $data;
         return $data;
+    }
+
+    function save_info($info) {
+        require_once "config.php";
+
+        $sql = "INSERT INTO p_rinda VALUES ('$info[0]','$info[1]','$info[2]','$info[3]','$info[4]','$info[5]','$info[6]')";
+
+        if ($link->query($sql) === TRUE) {
+            echo '<div class="alert alert-success alert-dismissible">
+                    <a class="close" data-dismiss="alert" aria-label="close">&times;</a>Paldies! Jūsu pieteikums ir saglabāts.</div>';
+        }
     }
     ?>
 
@@ -111,67 +132,62 @@
             </div>
             <div class="col-md-4">
                 <h2 class="title2">Pieteikt bērnu rindā</h2>
+                <p class="list1">Ar * atzīmēti obligātie lauki</p>
                 <form form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                     <div class="form-group">
-                        <label class="formt" for="vv">Vecāka vārds:</label>
-                        <input type="text" class="form-control" id="vvards" placeholder="Vecāka vārds" name="vvards">
-                        <span class="error">* <?php echo $errvv;?></span>
+                        <label class="formt" for="vv">Vecāka vārds: *</label>
+                        <input type="text" class="form-control" id="vvards" placeholder="Vecāka vārds" name="vvards" value="<?php echo $v_vards;?>">
+                        <span class="pazinojums"><?php echo $errvv;?></span>
                     </div>
                     <div class="form-group">
                         <label class="formt" for="vv">Vecāka uzvārds:</label>
-                        <input type="text" class="form-control" id="vuzv" placeholder="Vecāka uzvārds" name="vuzv">
+                        <input type="text" class="form-control" id="vuzv" placeholder="Vecāka uzvārds" name="vuzv" value="<?php echo $v_uzvards;?>">
                     </div>
                     <div class="form-group">
-                        <label class="formt" for="bv">Bērna vārds:</label>
-                        <input type="text" class="form-control" id="bvards" placeholder="Bērna vārds" name="bvards">
-                        <span class="error">* <?php echo $errbv;?></span>
+                        <label class="formt" for="bv">Bērna vārds: *</label>
+                        <input type="text" class="form-control" id="bvards" placeholder="Bērna vārds" name="bvards" value="<?php echo $b_vards;?>">
+                        <span class="pazinojums"><?php echo $errbv;?></span>
                     </div>
                     <div class="form-group">
-                        <label class="formt" for="vecums">Bērna vecums:</label><br>
+                        <label class="formt" for="vecums">Bērna vecums: *</label><br>
                         <label class="radio-inline" style="color: #ddd">
-                            <input type="radio" name="vecums">1,5
+                            <input type="radio" name="vecums" <?php if (isset($vecums) && $vecums=="1,5") echo "checked";?> value="1,5">1,5
                         </label>
                         <label class="radio-inline" style="color: #ddd">
-                            <input type="radio" name="vecums" class="formt">2
+                            <input type="radio" name="vecums" <?php if (isset($vecums) && $vecums=="2") echo "checked";?> value="2">2
                         </label>
                         <label class="radio-inline" style="color: #ddd">
-                            <input type="radio" name="vecums">3
+                            <input type="radio" name="vecums" <?php if (isset($vecums) && $vecums=="3") echo "checked";?> value="3">3
                         </label>
                         <label class="radio-inline" style="color: #ddd">
-                            <input type="radio" name="vecums">4
+                            <input type="radio" name="vecums" <?php if (isset($vecums) && $vecums=="4") echo "checked";?> value="4">4
                         </label>
                         <label class="radio-inline" style="color: #ddd">
-                            <input type="radio" name="vecums">5
+                            <input type="radio" name="vecums" <?php if (isset($vecums) && $vecums=="5") echo "checked";?> value="5">5
                         </label>
                         <label class="radio-inline" style="color: #ddd">
-                            <input type="radio" name="vecums">6
+                            <input type="radio" name="vecums" <?php if (isset($vecums) && $vecums=="6") echo "checked";?> value="6">6
                         </label>
-                        <span class="error">* <?php echo $errvecums;?></span>
+                        <span class="pazinojums"><?php echo $errvecums;?></span>
                     </div>
                     <div class="form-group">
                         <label class="formt" for="tel">Vecāka telefona numurs:</label>
-                        <input type="text" class="form-control" id="tel" placeholder="Tel." name="tel">
+                        <input type="text" class="form-control" id="tel" placeholder="Tel." name="tel"  value="<?php echo $tel;?>">
                     </div>
                     <div class="form-group">
-                        <label class="formt" for="email">Vecāka e-pasts:</label>
-                        <input type="email" class="form-control" id="email" placeholder="E-pasts" name="email">
-                        <span class="error">* <?php echo $erremail;?></span>
+                        <label class="formt" for="email">Vecāka e-pasts: *</label>
+                        <input type="email" class="form-control" id="email" placeholder="E-pasts" name="email"  value="<?php echo $epasts;?>">
+                        <span class="pazinojums"><?php echo $erremail;?></span>
                     </div>
                     <div class="form-group">
                         <label class="formt"  for="komentars">Komentārs:</label>
-                        <textarea class="form-control" rows="5" id="komentas"></textarea>
+                        <textarea class="form-control" rows="5" id="komentars" name="komentars"><?php echo $komentars;?></textarea>
                     </div>
                     <button type="submit" class="btn btn-custom">Iesniegt</button>
                 </form>
             </div>
         </div>
     </div>
-
-
-    <?php
-    echo "<h2>Your Input:</h2>";
-    print_r($info);
-    ?>
 
 </body>
 </html>
