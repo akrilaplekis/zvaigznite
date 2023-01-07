@@ -2,12 +2,12 @@
     require_once "config.php";
 
     $username = $password = $confirm_password = $vards = $uzvards = $loma = "";
-    $username_err = $password_err = $confirm_password_err = "";
+    $username_err = $password_err = $confirm_password_err = $loma_err = "";
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         if(empty(trim($_POST["username"]))){
             $username_err = "Ievadiet lietotāja vārdu!";
-        } else{
+        } else {
             $sql = "SELECT id FROM lietotaji WHERE liet_v = ?";
 
             if($stmt = mysqli_prepare($link, $sql)){
@@ -19,10 +19,10 @@
                     mysqli_stmt_store_result($stmt);
                     if(mysqli_stmt_num_rows($stmt) == 1){
                         $username_err = "Lietotāja vārds jau eksistē!";
-                    } else{
+                    } else {
                         $username = trim($_POST["username"]);
                     }
-                } else{
+                } else {
                     echo "Kaut kas nogāja greizi!";
                 }
                 mysqli_stmt_close($stmt);
@@ -35,26 +35,59 @@
             $password = trim($_POST["password"]);
         }
 
-        if(empty(trim($_POST["confirm_password"]))){
+        if(empty(trim($_POST["confirm_password"]))) {
             $confirm_password_err = "Apstipriniet paroli!";
-        } else{
+        } else {
             $confirm_password = trim($_POST["confirm_password"]);
             if(empty($password_err) && ($password != $confirm_password)){
                 $confirm_password_err = "Paroles nesakrīt!";
             }
         }
 
+        if(empty(trim($_POST["vards"]))){
+            $password_err = "Ievadiet vārdu!";
+        } else{
+            $password = trim($_POST["vards"]);
+        }
+
+        if(empty(trim($_POST["uzvards"]))){
+            $password_err = "Ievadiet uzvārdu!";
+        } else{
+            $password = trim($_POST["uzvards"]);
+        }
+
+        if(empty(trim($_POST["loma"]))){
+            $loma_err = "Ievadiet lomu!";
+        } elseif ($loma == 'admin' || $loma == 'lietotājs') {
+            $loma = trim($_POST["loma"]);
+        } else {
+            $loma_err = "Loma neeksistē!";
+        }
+
+
+        echo $username.'<br>';
+        echo $password.'<br>';
+        echo $vards.'<br>';
+        echo $uzvards.'<br>';
+        echo $loma.'<br>';
+
         if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
-            $sql = "INSERT INTO lietotaji (liet_v, parole) VALUES (?, ?)";
+            $sql = "INSERT INTO lietotaji (liet_v, parole, darb_vards, darb_uzvards, loma) VALUES (?, ?, ?, ?, ?)";
 
             if($stmt = mysqli_prepare($link, $sql)){
-                mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password);
+                mysqli_stmt_bind_param($stmt, "sssss", $param_username, $param_password, $param_vards, $param_uzvards, $param_loma);
 
                 $param_username = $username;
                 $param_password = password_hash($password, PASSWORD_DEFAULT);
+                $param_vards = $vards;
+                $param_uzvards = $uzvards;
+                $param_loma = $loma;
 
                 if(mysqli_stmt_execute($stmt)){
-                    header("location: login.php");
+                    echo $param_vards.'<br>';
+                    echo $param_uzvards.'<br>';
+                    echo $param_loma.'<br>';
+                    /*header("location: login.php");*/
                 } else{
                     echo "Kaut kas nogāja greizi!";
                 }
@@ -72,6 +105,7 @@
     <title>Administrātors</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="index.css" rel="stylesheet" type="text/css">
+    <link href="admin_page.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -106,42 +140,50 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-3">
-                <h2>Jauna lietotāja reģistrācija</h2>
-                <p>Aizpildiet visus laukus, lai piereģistrētu jaunu darbinieku vai vadītāju.</p>
+                <h2 class="title2">Lietotāja rediģēšana</h2>
+                <p class="list1">Aizpildiet visus laukus, lai rediģētu lietotāju.</p>
+            </div>
+            <div class="col-md-3">
+                <h2 class="title2">Jauna lietotāja reģistrācija</h2>
+                <p class="list1">Aizpildiet visus laukus, lai piereģistrētu jaunu darbinieku vai vadītāju.</p>
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                     <div class="form-group">
-                        <label>Lietotāja vārds</label>
+                        <label class="list1">Lietotāja vārds</label>
                         <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
-                        <span class="invalid-feedback"><?php echo $username_err; ?></span>
+                        <span class="pazinojums"><?php echo $username_err; ?></span>
                     </div>
                     <div class="form-group">
-                        <label>Parole</label>
+                        <label class="list1">Parole</label>
                         <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
-                        <span class="invalid-feedback"><?php echo $password_err; ?></span>
+                        <span class="pazinojums"><?php echo $password_err; ?></span>
                     </div>
                     <div class="form-group">
-                        <label>Apstipriniet paroli</label>
+                        <label class="list1">Apstipriniet paroli</label>
                         <input type="password" name="confirm_password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>">
-                        <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
+                        <span class="pazinojums"><?php echo $confirm_password_err; ?></span>
                     </div>
                     <div class="form-group">
-                        <label>Darbinieka vārds</label>
-                        <input type="text" name="vards" value="<?php echo $vards; ?>">
+                        <label class="list1">Darbinieka vārds</label>
+                        <input type="text" name="vards" class="form-control" value="<?php echo $vards; ?>">
                     </div>
                     <div class="form-group">
-                        <label>Darbinieka uzvārds</label>
-                        <input type="text" name="uzvards" value="<?php echo $uzvards; ?>">
+                        <label class="list1">Darbinieka uzvārds</label>
+                        <input type="text" name="uzvards" class="form-control" value="<?php echo $uzvards; ?>">
                     </div>
                     <div class="form-group">
-                        <label>Loma (admin, lietotājs)</label>
-                        <input type="text" name="loma" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $loma; ?>">
-                        <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
+                        <label class="list1">Loma (admin, lietotājs)</label>
+                        <input type="text" name="loma" class="form-control <?php echo (!empty($loma_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $loma; ?>">
+                        <span class="pazinojums"><?php echo $loma_err; ?></span>
                     </div>
                     <div class="form-group">
-                        <input type="submit" class="btn btn-primary" value="Submit">
-                        <input type="reset" class="btn btn-secondary ml-2" value="Reset">
+                        <input type="submit" class="btn btn-custom" value="Submit">
                     </div>
                 </form>
+            </div>
+
+            <div class="col-md-3">
+                <h2 class="title1">Galerijas rediģēšana</h2>
+                <p class="para1">Aizpildiet visus laukus, lai rediģētu galeriju.</p>
             </div>
         </div>
     </div>
