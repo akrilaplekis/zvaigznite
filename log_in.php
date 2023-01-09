@@ -1,5 +1,9 @@
+<?php
+    if(!isset($_SESSION)) {
+        session_start();
+    }
+?>
 <!DOCTYPE html>
-
 <html>
     <head>
     <meta charset="UTF-8">
@@ -30,16 +34,24 @@
                 </li>
                 <li><a href="vacakiem.php">Vecākiem</a></li>
                 <li><a href="foto.php">Foto Galerija</a></li>
-                <li><a href="kontakti.html">Kontakti</a></li>
+                <li><a href="kontakti.php">Kontakti</a></li>
                 <li><a href="log_in.php">Pieslēgties</a></li>
+                <?php
+                    if(!empty($_SESSION)) {
+                        if($_SESSION["loma"] == 'admin'){
+                            echo '<li><a href="admin_page.php">Administrātors</a></li>';
+                            echo '<li><a href="iziet.php">Iziet</a></li>';
+                        } elseif ($_SESSION["loma"] == 'lietotājs'){
+                            echo '<li><a href="admin_page.php">Lietotājs</a></li>';
+                            echo '<li><a href="iziet.php">Iziet</a></li>';
+                        }
+                    }
+                ?>
             </ul>
         </div>
     </nav>
 
     <?php
-        // Initialize the session
-        session_start();
-
         // Check if the user is already logged in, if yes then redirect him to welcome page
         if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
             header("location: index.php");
@@ -73,7 +85,7 @@
             // Validate credentials
             if(empty($username_err) && empty($password_err)){
                 // Prepare a select statement
-                $sql = "SELECT id, liet_v, parole FROM lietotaji WHERE liet_v = ?";
+                $sql = "SELECT loma, liet_v, parole FROM lietotaji WHERE liet_v = ?";
 
                 if($stmt = mysqli_prepare($link, $sql)){
                     // Bind variables to the prepared statement as parameters
@@ -90,7 +102,7 @@
                         // Check if username exists, if yes then verify password
                         if(mysqli_stmt_num_rows($stmt) == 1){
                             // Bind result variables
-                            mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
+                            mysqli_stmt_bind_result($stmt, $loma, $username, $hashed_password);
                             if(mysqli_stmt_fetch($stmt)){
                                 if(password_verify($password, $hashed_password)){
                                     // Password is correct, so start a new session
@@ -98,7 +110,7 @@
 
                                     // Store data in session variables
                                     $_SESSION["loggedin"] = true;
-                                    $_SESSION["id"] = $id;
+                                    $_SESSION["loma"] = $loma;
                                     $_SESSION["username"] = $username;
 
                                     // Redirect user to welcome page
