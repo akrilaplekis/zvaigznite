@@ -60,7 +60,7 @@
                             echo '<li><a href="admin_page.php">Administrātors</a></li>';
                             echo '<li><a href="iziet.php">Iziet</a></li>';
                         } elseif ($_SESSION["loma"] == 'lietotājs'){
-                            echo '<li><a href="admin_page.php">Lietotājs</a></li>';
+                            echo '<li><a href="user_page.php">Lietotājs</a></li>';
                             echo '<li><a href="iziet.php">Iziet</a></li>';
                         }
                     }

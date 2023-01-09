@@ -81,7 +81,7 @@
 
                 if(mysqli_stmt_execute($stmt)){
                     echo '<div class="alert alert-success alert-dismissible">
-                    <a class="close" data-dismiss="alert" aria-label="close">&times;</a>Jauns lietotājs ir reģistrēts!</div>';
+                        <a class="close" data-dismiss="alert" aria-label="close">&times;</a>Jauns lietotājs ir reģistrēts!</div>';
                     $_POST = array();
                 } else{
                     echo "Kaut kas nogāja greizi!";
@@ -133,7 +133,7 @@
                             echo '<li><a href="admin_page.php">Administrātors</a></li>';
                             echo '<li><a href="iziet.php">Iziet</a></li>';
                         } elseif ($_SESSION["loma"] == 'lietotājs'){
-                            echo '<li><a href="admin_page.php">Lietotājs</a></li>';
+                            echo '<li><a href="user_page.php">Lietotājs</a></li>';
                             echo '<li><a href="iziet.php">Iziet</a></li>';
                         }
                     }
@@ -145,10 +145,6 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-3">
-                <h2 class="title2">Lietotāja rediģēšana</h2>
-                <p class="list1">Aizpildiet visus laukus, lai rediģētu lietotāju.</p>
-            </div>
             <div class="col-md-3">
                 <h2 class="title2">Jauna lietotāja reģistrācija</h2>
                 <p class="list1">Aizpildiet visus laukus, lai piereģistrētu jaunu darbinieku vai vadītāju.</p>
@@ -184,12 +180,12 @@
                         <span class="pazinojums"><?php echo $loma_err; ?></span>
                     </div>
                     <div class="form-group">
-                        <input type="submit" class="btn btn-custom" value="Reģistrēt">
+                        <input type="submit" class="btn btn-custom" name="poga" value="Reģistrēt">
                     </div>
                 </form>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-6">
                 <h2 class="title1">Galerijas rediģēšana</h2>
                 <p class="para1">Aizpildiet visus laukus, lai rediģētu galeriju.</p>
             </div>

@@ -42,7 +42,7 @@
                             echo '<li><a href="admin_page.php">Administrātors</a></li>';
                             echo '<li><a href="iziet.php">Iziet</a></li>';
                         } elseif ($_SESSION["loma"] == 'lietotājs'){
-                            echo '<li><a href="admin_page.php">Lietotājs</a></li>';
+                            echo '<li><a href="user_page.php">Lietotājs</a></li>';
                             echo '<li><a href="iziet.php">Iziet</a></li>';
                         }
                     }
@@ -53,7 +53,7 @@
 
     <?php
     require_once "config.php";
-    $result = $link->query("SELECT data FROM foto_gal ORDER BY foto_id DESC");
+    $result = $link->query("SELECT data FROM foto_gal");
     $att = array();
 
     if($result->num_rows > 0){ ?>
@@ -72,24 +72,28 @@
             <div class="panel panel-custom">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Foto ar bērnu darbiem</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Jaunumi</a>
                     </h4>
                 </div>
                 <div id="collapse1" class="panel-collapse collapse">
-                    <div class="panel-body"><img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($att[0]); ?>" class="img-rounded" alt="Cinque Terre" width="236" height="306"/>
-                        <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($att[1]); ?>" class="img-rounded" alt="Cinque Terre" width="304" height="236"/>
+                    <div class="panel-body">
+                        <?php
+                            $n = count($att) - 1;
+                            for($i = 6; $i <= $n; $i++){
+                                echo '<img src="data:image/jpg;charset=utf8;base64,'.base64_encode($att[$i]).'" class="img-rounded" alt="Cinque Terre" width="306" height="236"/>';
+                            }
+                        ?>
                     </div>
                 </div>
             </div>
             <div class="panel panel-custom">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Rotaļlietas</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Foto ar bērnu darbiem</a>
                     </h4>
                 </div>
                 <div id="collapse2" class="panel-collapse collapse">
-                    <div class="panel-body"><img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($att[5]); ?>" class="img-rounded" alt="Cinque Terre" width="304" height="236"/>
-                        <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($att[2]); ?>" class="img-rounded" alt="Cinque Terre" width="304" height="236"/>
+                    <div class="panel-body"><img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($att[5]); ?>" class="img-rounded" alt="Cinque Terre" width="236" height="306"/>
                         <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($att[4]); ?>" class="img-rounded" alt="Cinque Terre" width="304" height="236"/>
                     </div>
                 </div>
@@ -97,11 +101,24 @@
             <div class="panel panel-custom">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Spēļlaukumi</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Rotaļlietas</a>
                     </h4>
                 </div>
                 <div id="collapse3" class="panel-collapse collapse">
-                    <div class="panel-body"><img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($att[3]); ?>" class="img-rounded" alt="Cinque Terre" width="304" height="236"/></div>
+                    <div class="panel-body"><img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($att[0]); ?>" class="img-rounded" alt="Cinque Terre" width="304" height="236"/>
+                        <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($att[3]); ?>" class="img-rounded" alt="Cinque Terre" width="304" height="236"/>
+                        <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($att[1]); ?>" class="img-rounded" alt="Cinque Terre" width="304" height="236"/>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-custom">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Spēļlaukumi</a>
+                    </h4>
+                </div>
+                <div id="collapse4" class="panel-collapse collapse">
+                    <div class="panel-body"><img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($att[2]); ?>" class="img-rounded" alt="Cinque Terre" width="304" height="236"/></div>
                 </div>
             </div>
         </div>
