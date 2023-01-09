@@ -2,7 +2,7 @@
     require_once "config.php";
 
     $username = $password = $confirm_password = $vards = $uzvards = $loma = "";
-    $username_err = $password_err = $confirm_password_err = $loma_err = "";
+    $username_err = $password_err = $confirm_password_err = $loma_err = $vards_err = $uzvards_err = "";
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         if(empty(trim($_POST["username"]))){
@@ -45,33 +45,26 @@
         }
 
         if(empty(trim($_POST["vards"]))){
-            $password_err = "Ievadiet vārdu!";
+            $vards_err = "Ievadiet vārdu!";
         } else{
-            $password = trim($_POST["vards"]);
+            $vards = trim($_POST["vards"]);
         }
 
         if(empty(trim($_POST["uzvards"]))){
-            $password_err = "Ievadiet uzvārdu!";
+            $uzvards_err = "Ievadiet uzvārdu!";
         } else{
-            $password = trim($_POST["uzvards"]);
+            $uzvards = trim($_POST["uzvards"]);
         }
 
         if(empty(trim($_POST["loma"]))){
             $loma_err = "Ievadiet lomu!";
-        } elseif ($loma == 'admin' || $loma == 'lietotājs') {
+        } elseif (trim($_POST["loma"]) == 'admin' || trim($_POST["loma"]) == 'lietotājs') {
             $loma = trim($_POST["loma"]);
         } else {
             $loma_err = "Loma neeksistē!";
         }
 
-
-        echo $username.'<br>';
-        echo $password.'<br>';
-        echo $vards.'<br>';
-        echo $uzvards.'<br>';
-        echo $loma.'<br>';
-
-        if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
+        if(empty($username_err) && empty($password_err) && empty($confirm_password_err)  && empty($vards_err) && empty($uzvards_err) && empty($loma_err)){
             $sql = "INSERT INTO lietotaji (liet_v, parole, darb_vards, darb_uzvards, loma) VALUES (?, ?, ?, ?, ?)";
 
             if($stmt = mysqli_prepare($link, $sql)){
@@ -84,10 +77,9 @@
                 $param_loma = $loma;
 
                 if(mysqli_stmt_execute($stmt)){
-                    echo $param_vards.'<br>';
-                    echo $param_uzvards.'<br>';
-                    echo $param_loma.'<br>';
-                    /*header("location: login.php");*/
+                    echo '<div class="alert alert-success alert-dismissible">
+                    <a class="close" data-dismiss="alert" aria-label="close">&times;</a>Jauns lietotājs ir reģistrēts!</div>';
+                    $_POST = array();
                 } else{
                     echo "Kaut kas nogāja greizi!";
                 }
@@ -149,34 +141,36 @@
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                     <div class="form-group">
                         <label class="list1">Lietotāja vārds</label>
-                        <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
+                        <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>">
                         <span class="pazinojums"><?php echo $username_err; ?></span>
                     </div>
                     <div class="form-group">
                         <label class="list1">Parole</label>
-                        <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
+                        <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
                         <span class="pazinojums"><?php echo $password_err; ?></span>
                     </div>
                     <div class="form-group">
                         <label class="list1">Apstipriniet paroli</label>
-                        <input type="password" name="confirm_password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>">
+                        <input type="password" name="confirm_password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>">
                         <span class="pazinojums"><?php echo $confirm_password_err; ?></span>
                     </div>
                     <div class="form-group">
                         <label class="list1">Darbinieka vārds</label>
-                        <input type="text" name="vards" class="form-control" value="<?php echo $vards; ?>">
+                        <input type="text" name="vards" class="form-control <?php echo (!empty($vards_err)) ? 'is-invalid' : ''; ?>">
+                        <span class="pazinojums"><?php echo $vards_err; ?></span>
                     </div>
                     <div class="form-group">
                         <label class="list1">Darbinieka uzvārds</label>
-                        <input type="text" name="uzvards" class="form-control" value="<?php echo $uzvards; ?>">
+                        <input type="text" name="uzvards" class="form-control <?php echo (!empty($uzvards_err)) ? 'is-invalid' : ''; ?>">
+                        <span class="pazinojums"><?php echo $uzvards_err; ?></span>
                     </div>
                     <div class="form-group">
                         <label class="list1">Loma (admin, lietotājs)</label>
-                        <input type="text" name="loma" class="form-control <?php echo (!empty($loma_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $loma; ?>">
+                        <input type="text" name="loma" class="form-control <?php echo (!empty($loma_err)) ? 'is-invalid' : ''; ?>">
                         <span class="pazinojums"><?php echo $loma_err; ?></span>
                     </div>
                     <div class="form-group">
-                        <input type="submit" class="btn btn-custom" value="Submit">
+                        <input type="submit" class="btn btn-custom" value="Reģistrēt">
                     </div>
                 </form>
             </div>
