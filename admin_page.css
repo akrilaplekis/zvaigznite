@@ -22,6 +22,15 @@ div.col-md-6:nth-child(2){
     color: #ddd;
     background-color: #226699;
     border-color: #226699;
+    padding: 3px;
+}
+
+.btn-custom2 {
+    color: #ddd;
+    background-color: #226699;
+    border-color: #226699;
+    padding: 3px;
+    alignment: right;
 }
 
 .pazinojums {
@@ -32,4 +41,25 @@ div.col-md-6:nth-child(2){
     font-size: 12px;
     line-height: 20px;
     border-radius: 4px;
+}
+
+.custom-file-input {
+    color: transparent;
+}
+
+.custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
+.custom-file-input::before {
+    content: 'Izvēlēties failu';
+    color: #ddd;
+    background-color: #226699;
+    border-color: #226699;
+    display: inline-block;
+    padding: 5px 8px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
 }
