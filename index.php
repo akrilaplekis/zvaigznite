@@ -1,3 +1,8 @@
+<?php
+    if(!isset($_SESSION)) {
+        session_start();
+    }
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -26,14 +31,24 @@
                         <li><a href="grupas.php?id=6">Rudzupuķes</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Vecākiem</a></li>
+                <li><a href="vacakiem.php">Vecākiem</a></li>
                 <li><a href="foto.php">Foto Galerija</a></li>
-                <li><a href="kontakti.html">Kontakti</a></li>
+                <li><a href="kontakti.php">Kontakti</a></li>
                 <li><a href="log_in.php">Pieslēgties</a></li>
+                <?php
+                if(!empty($_SESSION)) {
+                    if($_SESSION["loma"] == 'admin'){
+                        echo '<li><a href="admin_page.php">Administrātors</a></li>';
+                        echo '<li><a href="iziet.php">Iziet</a></li>';
+                    } elseif ($_SESSION["loma"] == 'lietotājs'){
+                        echo '<li><a href="admin_page.php">Lietotājs</a></li>';
+                        echo '<li><a href="iziet.php">Iziet</a></li>';
+                    }
+                }
+                ?>
             </ul>
         </div>
     </nav>
-
 
     <div class="container-fluid">
         <div class="row">
