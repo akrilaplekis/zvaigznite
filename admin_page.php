@@ -126,7 +126,7 @@
         echo '<div class="alert alert-warning alert-dismissible">
                         <a class="close" data-dismiss="alert" aria-label="close">&times;</a>'.$msg.'</div>';
     } elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['del'])) {
-        $title = intval($_POST['title']);
+        $title = $title = trim(sql_safe($link, $_POST['title']));
         mysqli_query($link, "DELETE FROM foto_gal WHERE title='$title'");
         $msg = 'Attēls ir izdzēsts!';
 
