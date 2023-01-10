@@ -85,6 +85,19 @@
             </div>
             <div class="col-md-2">
                 <h2 class="title2">Ziņojumu dēlis</h2>
+                <div class="row">
+                    <?php
+                        require_once "config.php";
+                        $result = $link->query("SELECT zina FROM zinojumi");
+                    if($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo '<div class="col-1 col-md-10"><p class="para1">'.$row["zina"].'</p></div>';
+                        }
+                    } else{
+                        echo '<div class="col-1 col-md-10"><p class="para1">Šobrīd ziņojumu nav.</p></div>';
+                    }
+                    ?>
+                </div>
             </div>
         </div>
     </div>
