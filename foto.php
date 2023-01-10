@@ -58,13 +58,11 @@
     $result = $link->query("SELECT data FROM foto_gal");
     $att = array();
 
-    if($result->num_rows > 0){ ?>
-        <div class="gallery">
-            <?php while($row = $result->fetch_assoc()){
-                $att[] = $row['data'];
-            } ?>
-        </div>
-    <?php }else{ ?>
+    if($result->num_rows > 0){
+        while($row = $result->fetch_assoc()){
+            $att[] = $row['data'];
+            }
+    }else { ?>
         <p class="status error">Image(s) not found...</p>
     <?php } ?>
 

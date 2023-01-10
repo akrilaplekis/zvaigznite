@@ -54,7 +54,6 @@
     </nav>
 
     <?php
-    // define variables and set to empty values
     $v_vards = $v_uzvards = $b_vards = $epasts = $tel = $komentars = "";
     $errvv = $errbv = $erremail = $errvecums = "";
     $info = array();
@@ -93,7 +92,6 @@
         if (empty($_POST["email"])) {
             $erremail = "E-pasts ir jāievada!";
         } else {
-            // check if e-mail address is well-formed
             if (filter_var($epasts, FILTER_VALIDATE_EMAIL)) {
                 $erremail = "Formāts nav pareizs!";
             } else {
@@ -301,4 +299,3 @@
 
 </body>
 </html>
-

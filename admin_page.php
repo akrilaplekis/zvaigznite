@@ -1,6 +1,4 @@
 <?php
-    error_reporting(E_ALL & ~E_NOTICE);
-    ini_set('display_errors',1);
     if(!isset($_SESSION)) {
         session_start();
     }
@@ -115,7 +113,6 @@
             if (!isset($msg)) {
                 $data = file_get_contents($_FILES['photo']['tmp_name']);
                 $data = mysqli_real_escape_string($link, $data);
-                // Sagatabojam datus priekð MySQL vaicajuma
                 mysqli_query($link, "INSERT INTO foto_gal SET ext='$ext', title='$title',  data='$data'");
                 $msg = 'Veiksmīgi atjaunota galerija!';
             }
