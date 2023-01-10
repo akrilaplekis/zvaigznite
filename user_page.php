@@ -43,6 +43,19 @@
         mysqli_close($link);
         echo '<div class="alert alert-warning alert-dismissible">
                             <a class="close" data-dismiss="alert" aria-label="close">&times;</a>'.$msg.'</div>';
+    } elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['sutit'])) {
+        $zina = trim(sql_safe($link, $_POST['zina']));
+        $autors = $_SESSION["username"];
+        if ($zina == '') {
+            $msg = 'Ievadiet ziņu!';
+        } else {
+            mysqli_query($link, "INSERT INTO zinojumi SET zina='$zina', autors='$autors'");
+            $msg = 'Ziņojums saglabāts!';
+        }
+
+        mysqli_close($link);
+        echo '<div class="alert alert-warning alert-dismissible">
+                                    <a class="close" data-dismiss="alert" aria-label="close">&times;</a>' . $msg . '</div>';
     }
 ?>
 <!DOCTYPE html>
@@ -97,7 +110,7 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-5">
                 <h2 class="title1">Galerijas rediģēšana</h2>
                 <p class="para1">Aizpildiet visus laukus, lai rediģētu galeriju. Lai izdzēstu attēlu ir jāievada tā nosaukums.</p>
                 <form action="<?php echo $_SERVER['PHP_SELF']?>" method="POST" enctype="multipart/form-data">
@@ -107,6 +120,15 @@
                     <input class="custom-file-input" type="file" name="photo" id="photo"><br>
                     <input type="submit" class="btn btn-custom1" name="att" value="Augšuielādēt">
                     <input type="submit" class="btn btn-custom2" name="del" value="Dzēst attēlu">
+                </form>
+            </div>
+            <div class="col-md-4">
+                <h2 class="title2">Ziņu pievienošana ziņojumu dēlim</h2>
+                <p class="list1">Ievadiet ziņojumu un nosūtiet to.</p>
+                <form action="<?php echo $_SERVER['PHP_SELF']?>" method="POST" enctype="multipart/form-data">
+                    <p><label class="list1">Ziņojums:</label></p>
+                    <textarea id="zina" name="zina" rows="4" cols="50"></textarea><br>
+                    <input type="submit" class="btn btn-custom" name="sutit" value="Nosūtīt">
                 </form>
             </div>
         </div>

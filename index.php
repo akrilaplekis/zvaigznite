@@ -54,7 +54,7 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-5">
                 <h1 class="title1">Par mums</h1>
                 <p class="para1">Mēs piedāvājam izglītojošu, radošu un dzīvespriecīgu vidi jūsu bērnam. Mūsu izglītojamie profesionālu, pieredzējušu un radošu pedagogu vadībā apgūs pirmskolas izglītības programmu un tiks sagatavoti skolas gaitu uzsākšanai.</p>
                 <h1 class="title1">Uzņemšana</h1>
@@ -82,6 +82,22 @@
                     <li class="list1">16:00 - 17:00 Nodarbības</li>
                     <li class="list1">17:00 - 19:00 Bērni dodas mājās</li>
                 </ul>
+            </div>
+            <div class="col-md-2">
+                <h2 class="title2">Ziņojumu dēlis</h2>
+                <div class="row">
+                    <?php
+                        require_once "config.php";
+                        $result = $link->query("SELECT zina FROM zinojumi");
+                    if($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo '<div class="col-1 col-md-10"><p class="para1">'.$row["zina"].'</p></div>';
+                        }
+                    } else{
+                        echo '<div class="col-1 col-md-10"><p class="para1">Šobrīd ziņojumu nav.</p></div>';
+                    }
+                    ?>
+                </div>
             </div>
         </div>
     </div>

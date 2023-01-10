@@ -54,18 +54,16 @@
     </nav>
 
     <?php
-    require_once "config.php";
-    $result = $link->query("SELECT data FROM foto_gal");
-    $att = array();
+        require_once "config.php";
+        $result = $link->query("SELECT data FROM foto_gal");
+        $att = array();
 
-    if($result->num_rows > 0){
-        while($row = $result->fetch_assoc()){
-            $att[] = $row['data'];
+        if($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $att[] = $row['data'];
             }
-    }else { ?>
-        <p class="status error">Image(s) not found...</p>
-    <?php } ?>
-
+        }
+    ?>
 
     <div class="container-fluid">
         <div class="panel-group" id="accordion">
