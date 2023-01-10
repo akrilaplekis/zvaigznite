@@ -1,13 +1,19 @@
 <?php
+    error_reporting(E_ALL & ~E_NOTICE);
+    ini_set('display_errors',1);
     if(!isset($_SESSION)) {
         session_start();
     }
     require_once "config.php";
+    function  sql_safe($mysqli, $s){
+        $s = stripslashes($s);
+        return mysqli_real_escape_string($mysqli, $s);
+    }
 
     $username = $password = $confirm_password = $vards = $uzvards = $loma = "";
     $username_err = $password_err = $confirm_password_err = $loma_err = $vards_err = $uzvards_err = "";
 
-    if($_SERVER["REQUEST_METHOD"] == "POST"){
+    if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['poga'])){
         if(empty(trim($_POST["username"]))){
             $username_err = "Ievadiet lietotāja vārdu!";
         } else {
@@ -81,7 +87,7 @@
 
                 if(mysqli_stmt_execute($stmt)){
                     echo '<div class="alert alert-success alert-dismissible">
-                    <a class="close" data-dismiss="alert" aria-label="close">&times;</a>Jauns lietotājs ir reģistrēts!</div>';
+                        <a class="close" data-dismiss="alert" aria-label="close">&times;</a>Jauns lietotājs ir reģistrēts!</div>';
                     $_POST = array();
                 } else{
                     echo "Kaut kas nogāja greizi!";
@@ -91,6 +97,42 @@
             }
         }
         mysqli_close($link);
+    } elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['att'])) {
+        $title = trim(sql_safe($link, $_POST['title']));
+        if ($title == '') {
+            $title = '(nav)';
+        }
+        if (isset($_FILES['photo'])) {
+            @list(, , $imtype, ) = getimagesize($_FILES['photo']['tmp_name']);
+            if ($imtype == 3)
+                $ext="png";
+            elseif ($imtype == 2)
+                $ext="jpeg";
+            elseif ($imtype == 1)
+                $ext="gif";
+            else
+                $msg = 'Nav zināms attēla formāts';
+            if (!isset($msg)) {
+                $data = file_get_contents($_FILES['photo']['tmp_name']);
+                $data = mysqli_real_escape_string($link, $data);
+                // Sagatabojam datus priekð MySQL vaicajuma
+                mysqli_query($link, "INSERT INTO foto_gal SET ext='$ext', title='$title',  data='$data'");
+                $msg = 'Veiksmīgi atjaunota galerija!';
+            }
+        } elseif (isset($_GET['title'])) {
+            $msg = 'Fails nav ielādējies!';
+        }
+        mysqli_close($link);
+        echo '<div class="alert alert-warning alert-dismissible">
+                        <a class="close" data-dismiss="alert" aria-label="close">&times;</a>'.$msg.'</div>';
+    } elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['del'])) {
+        $title = $title = trim(sql_safe($link, $_POST['title']));
+        mysqli_query($link, "DELETE FROM foto_gal WHERE title='$title'");
+        $msg = 'Attēls ir izdzēsts!';
+
+        mysqli_close($link);
+        echo '<div class="alert alert-warning alert-dismissible">
+                        <a class="close" data-dismiss="alert" aria-label="close">&times;</a>'.$msg.'</div>';
     }
 ?>
 
@@ -125,15 +167,16 @@
                 <li><a href="vacakiem.php">Vecākiem</a></li>
                 <li><a href="foto.php">Foto Galerija</a></li>
                 <li><a href="kontakti.php">Kontakti</a></li>
-                <li><a href="log_in.php">Pieslēgties</a></li>
-                <li><a href="admin_page.php">Profils</a></li>
                 <?php
+                    if(empty($_SESSION)){
+                        echo '<li><a href="log_in.php">Pieslēgties</a></li>';
+                    }
                     if(!empty($_SESSION)) {
                         if($_SESSION["loma"] == 'admin'){
                             echo '<li><a href="admin_page.php">Administrātors</a></li>';
                             echo '<li><a href="iziet.php">Iziet</a></li>';
                         } elseif ($_SESSION["loma"] == 'lietotājs'){
-                            echo '<li><a href="admin_page.php">Lietotājs</a></li>';
+                            echo '<li><a href="user_page.php">Lietotājs</a></li>';
                             echo '<li><a href="iziet.php">Iziet</a></li>';
                         }
                     }
@@ -145,10 +188,6 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-3">
-                <h2 class="title2">Lietotāja rediģēšana</h2>
-                <p class="list1">Aizpildiet visus laukus, lai rediģētu lietotāju.</p>
-            </div>
             <div class="col-md-3">
                 <h2 class="title2">Jauna lietotāja reģistrācija</h2>
                 <p class="list1">Aizpildiet visus laukus, lai piereģistrētu jaunu darbinieku vai vadītāju.</p>
@@ -184,14 +223,22 @@
                         <span class="pazinojums"><?php echo $loma_err; ?></span>
                     </div>
                     <div class="form-group">
-                        <input type="submit" class="btn btn-custom" value="Reģistrēt">
+                        <input type="submit" class="btn btn-custom" name="poga" value="Reģistrēt">
                     </div>
                 </form>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-6">
                 <h2 class="title1">Galerijas rediģēšana</h2>
-                <p class="para1">Aizpildiet visus laukus, lai rediģētu galeriju.</p>
+                <p class="para1">Aizpildiet visus laukus, lai rediģētu galeriju. Lai izdzēstu attēlu ir jāievada tā nosaukums.</p>
+                <form action="<?php echo $_SERVER['PHP_SELF']?>" method="POST" enctype="multipart/form-data">
+                    <label for="title" class="para1">Nosaukims:</label><br>
+                    <input type="text" name="title" id="title" class="form-control" size="64"><br><br>
+                    <label for="photo" class="para1">Attēls:</label><br>
+                    <input class="custom-file-input" type="file" name="photo" id="photo"><br>
+                    <input type="submit" class="btn btn-custom1" name="att" value="Augšuielādēt">
+                    <input type="submit" class="btn btn-custom2" name="del" value="Dzēst attēlu">
+                </form>
             </div>
         </div>
     </div>
